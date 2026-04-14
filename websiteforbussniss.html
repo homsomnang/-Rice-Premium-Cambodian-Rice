@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ហម Rice – Premium Cambodian Rice</title>
+  <meta name="description" content="ហម Rice – Authentic premium rice from the fertile fields of Cambodia. Jasmine, White, and Sticky rice shipped worldwide." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:    #D4A017;
+      --gold2:   #F5C842;
+      --dark:    #1A1209;
+      --brown:   #4A2C0A;
+      --cream:   #FDF6E3;
+      --green:   #3A6B35;
+      --green2:  #5A9E52;
+      --text:    #2D1E0A;
+      --muted:   #7A6248;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 6%;
+      background: rgba(26,18,9,0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(212,160,23,0.25);
+      transition: background .3s;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--gold2);
+      letter-spacing: 1px;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-logo span { font-size: 1.8rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #f0e6cc; text-decoration: none; font-size: .95rem;
+      font-weight: 500; letter-spacing: .5px;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--gold2); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--dark) !important;
+      padding: .5rem 1.4rem; border-radius: 50px;
+      font-weight: 600 !important;
+      transition: transform .2s, box-shadow .2s !important;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,160,23,.4) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #1A1209 0%, #2E1A00 40%, #3A2500 70%, #1A1209 100%);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 80%, rgba(90,158,82,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 50% at 50% 110%, rgba(212,160,23,.12) 0%, transparent 60%);
+    }
+    /* animated grain-like dots */
+    .hero-particles {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(245,200,66,.06) 1px, transparent 1px),
+        radial-gradient(circle, rgba(245,200,66,.04) 1px, transparent 1px);
+      background-size: 40px 40px, 80px 80px;
+      animation: drift 20s linear infinite;
+    }
+    @keyframes drift { from { background-position: 0 0, 0 0; } to { background-position: 40px 40px, 80px 80px; } }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 1.5rem;
+      max-width: 820px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(212,160,23,.15);
+      border: 1px solid rgba(212,160,23,.4);
+      color: var(--gold2); font-size: .85rem; font-weight: 600;
+      padding: .4rem 1.2rem; border-radius: 50px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px; text-transform: uppercase;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.1;
+      color: #FFF8ED;
+      animation: fadeUp .9s .1s ease both;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #c4aa80; line-height: 1.7;
+      animation: fadeUp .9s .2s ease both;
+    }
+    .hero-btns {
+      margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp .9s .35s ease both;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--dark); font-weight: 700; font-size: 1rem;
+      padding: .9rem 2.4rem; border-radius: 50px; border: none; cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 30px rgba(212,160,23,.35);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(212,160,23,.5); }
+    .btn-ghost {
+      background: transparent;
+      color: #FFF8ED; font-weight: 600; font-size: 1rem;
+      padding: .9rem 2.4rem; border-radius: 50px;
+      border: 1.5px solid rgba(255,248,237,.35);
+      text-decoration: none;
+      transition: border-color .25s, color .25s, transform .2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold2); color: var(--gold2); transform: translateY(-3px); }
+
+    .hero-stats {
+      margin-top: 4rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      animation: fadeUp .9s .5s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 900; color: var(--gold2);
+    }
+    .stat-label { font-size: .85rem; color: #9a8060; letter-spacing: .5px; margin-top: .2rem; }
+
+    /* scroll indicator */
+    .scroll-down {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .3rem;
+      color: #9a8060; font-size: .75rem; letter-spacing: 1px;
+      animation: bounce 2s infinite;
+    }
+    .scroll-down svg { width: 20px; height: 20px; }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 6rem 6%; }
+    .section-tag {
+      display: inline-block;
+      font-size: .8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--green2); margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2;
+      color: var(--brown);
+    }
+    .section-title .g { color: var(--gold); }
+    .section-sub { margin-top: .8rem; font-size: 1.05rem; color: var(--muted); line-height: 1.7; max-width: 580px; }
+    .divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 2px; margin: 1rem 0 2rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: #fff;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .about-visual {
+      position: relative; border-radius: 24px; overflow: hidden;
+      height: 460px;
+      background: linear-gradient(160deg, #2E6B28, #8DB845, #F5C842, #D4A017 80%, #4A2C0A);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 30px 80px rgba(74,44,10,.2);
+    }
+    .about-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 70%, rgba(255,255,255,.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.06) 0%, transparent 40%);
+    }
+    .about-icon { font-size: 9rem; filter: drop-shadow(0 10px 30px rgba(0,0,0,.3)); }
+    .about-badge-float {
+      position: absolute; bottom: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,.95); border-radius: 16px;
+      padding: 1rem 1.4rem; backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,.15);
+    }
+    .about-badge-float strong { font-size: 1.4rem; color: var(--brown); display: block; }
+    .about-badge-float span { font-size: .8rem; color: var(--muted); }
+    .feature-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: .9rem; }
+    .feature-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--cream); border-radius: 12px; padding: .9rem 1.2rem;
+      border-left: 4px solid var(--gold);
+    }
+    .feature-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .feature-item h4 { font-size: .95rem; font-weight: 600; color: var(--brown); }
+    .feature-item p { font-size: .85rem; color: var(--muted); margin-top: .15rem; }
+
+    /* ── PRODUCTS ── */
+    #products {
+      background: linear-gradient(180deg, var(--cream) 0%, #fff8e8 100%);
+      text-align: center;
+    }
+    #products .section-sub { margin: 0 auto; }
+    .products-grid {
+      margin-top: 3rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+    }
+    .product-card {
+      background: #fff; border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(74,44,10,.08);
+      transition: transform .3s, box-shadow .3s;
+      text-align: left;
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(74,44,10,.18); }
+    .product-img {
+      height: 220px; display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; position: relative;
+    }
+    .product-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.08));
+    }
+    .p-jasmine .product-img { background: linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7); }
+    .p-white   .product-img { background: linear-gradient(135deg, #f5f5f5, #e0e0e0, #d4cfca); }
+    .p-sticky  .product-img { background: linear-gradient(135deg, #fff8e1, #ffe082, #fdd835); }
+    .p-red     .product-img { background: linear-gradient(135deg, #fce4ec, #ef9a9a, #c94040); }
+    .product-body { padding: 1.5rem; }
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--brown);
+    }
+    .product-origin {
+      font-size: .8rem; color: var(--green2); font-weight: 600;
+      margin-top: .2rem; letter-spacing: .5px;
+    }
+    .product-desc { font-size: .9rem; color: var(--muted); margin-top: .7rem; line-height: 1.6; }
+    .product-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1.2rem;
+    }
+    .product-price {
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+    }
+    .product-price span { font-size: .8rem; color: var(--muted); font-weight: 400; font-family: 'Inter', sans-serif; }
+    .btn-order {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--dark); font-weight: 700; font-size: .85rem;
+      padding: .55rem 1.3rem; border-radius: 50px; border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-order:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(212,160,23,.4); }
+
+    /* ── WHY US ── */
+    #why {
+      background: linear-gradient(160deg, #1A1209 0%, #2E1A00 60%, #1A1209 100%);
+      color: #FFF8ED;
+    }
+    #why .section-title { color: #FFF8ED; }
+    #why .section-sub { color: #c4aa80; }
+    #why .section-tag { color: var(--gold2); }
+    #why .divider { background: linear-gradient(90deg, var(--gold2), transparent); }
+    .why-grid {
+      margin-top: 3rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+    }
+    .why-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(212,160,23,.15);
+      border-radius: 20px; padding: 2rem 1.5rem;
+      transition: background .3s, transform .3s;
+    }
+    .why-card:hover { background: rgba(212,160,23,.08); transform: translateY(-4px); }
+    .why-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--gold2); }
+    .why-card p { font-size: .9rem; color: #9a8060; margin-top: .5rem; line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: #fff; text-align: center; }
+    .testimonials-grid {
+      margin-top: 3rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+    }
+    .testi-card {
+      background: var(--cream); border-radius: 20px; padding: 2rem 1.8rem;
+      text-align: left; position: relative;
+      border: 1px solid rgba(212,160,23,.15);
+    }
+    .testi-quote {
+      font-size: 3rem; color: var(--gold2); line-height: 1;
+      font-family: 'Playfair Display', serif; margin-bottom: .5rem;
+    }
+    .testi-text { font-size: .95rem; color: var(--text); line-height: 1.7; }
+    .testi-author { margin-top: 1.2rem; display: flex; align-items: center; gap: .9rem; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: bold;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--dark);
+    }
+    .testi-name { font-weight: 600; font-size: .95rem; color: var(--brown); }
+    .testi-loc { font-size: .8rem; color: var(--muted); }
+    .stars { color: var(--gold2); font-size: 1rem; margin-bottom: .75rem; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, #f9f3e3, #fff8e8);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .contact-form {
+      background: #fff; border-radius: 24px; padding: 2.5rem;
+      box-shadow: 0 10px 50px rgba(74,44,10,.1);
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block; font-size: .85rem; font-weight: 600; color: var(--brown); margin-bottom: .4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: .8rem 1.1rem;
+      border: 1.5px solid #e0d5c0; border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: .95rem; color: var(--text);
+      background: var(--cream); transition: border-color .25s, box-shadow .25s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,160,23,.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--brown); margin-bottom: 1rem;
+    }
+    .info-item {
+      display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;
+    }
+    .info-icon {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+    }
+    .info-item h4 { font-size: .9rem; font-weight: 600; color: var(--brown); }
+    .info-item p { font-size: .9rem; color: var(--muted); margin-top: .15rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: #9a8060;
+      padding: 3rem 6% 2rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-brand .nav-logo { margin-bottom: .8rem; }
+    .footer-brand p { font-size: .9rem; line-height: 1.7; max-width: 280px; }
+    footer h4 {
+      font-size: .85rem; font-weight: 700; color: var(--gold2);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem;
+    }
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    footer ul a { color: #9a8060; text-decoration: none; font-size: .9rem; transition: color .2s; }
+    footer ul a:hover { color: var(--gold2); }
+    .footer-bottom {
+      background: var(--dark); color: #5a4828;
+      text-align: center; padding: 1.2rem 6%;
+      font-size: .82rem; border-top: 1px solid rgba(212,160,23,.1);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #about { grid-template-columns: 1fr; }
+      .about-visual { height: 300px; }
+      #contact { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 4%; }
+      .nav-links { display: none; }
+      section { padding: 4rem 4%; }
+      footer { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="nav-logo"><span>🌾</span> ហម Rice</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🇰🇭 &nbsp;Proudly from Cambodia</div>
+    <h1 class="hero-title">
+      Premium <span class="highlight">Cambodian Rice</span><br/>From Field to Table
+    </h1>
+    <p class="hero-sub">
+      Grown in the fertile floodplains of the Mekong Delta, our rice is hand-selected,<br/>
+      naturally fragrant, and packed with tradition. Trusted by buyers worldwide.
+    </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">🛒 Shop Our Rice</a>
+      <a href="#about" class="btn-ghost">Learn Our Story</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-number">12+</div><div class="stat-label">Years of Farming</div></div>
+      <div class="stat"><div class="stat-number">30+</div><div class="stat-label">Countries Exported</div></div>
+      <div class="stat"><div class="stat-number">500T</div><div class="stat-label">Rice Yearly</div></div>
+      <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Customer Rating</div></div>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    scroll
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-icon">🌾</div>
+    <div class="about-badge-float">
+      <strong>Since 2012</strong>
+      <span>Family-owned farm</span>
+    </div>
+  </div>
+  <div>
+    <span class="section-tag">Our Story</span>
+    <h2 class="section-title">Rooted in <span class="g">Cambodian</span> Tradition</h2>
+    <div class="divider"></div>
+    <p class="section-sub">
+      Nestled along the banks of the Mekong River, our family farm has cultivated the finest rice varieties for over a decade. We combine ancient Khmer farming wisdom with modern quality standards to deliver rice that nourishes bodies and honors our heritage.
+    </p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <span class="feature-icon">🌱</span>
+        <div>
+          <h4>100% Natural Farming</h4>
+          <p>No artificial pesticides. We rely on traditional water-management and organic compost.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔬</span>
+        <div>
+          <h4>Quality Tested</h4>
+          <p>Every batch is lab-tested for purity, moisture content, and grain integrity before export.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🌍</span>
+        <div>
+          <h4>Global Export Ready</h4>
+          <p>Certified for export to the EU, USA, China, and Southeast Asia. Full documentation provided.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section id="products">
+  <span class="section-tag">Our Products</span>
+  <h2 class="section-title">Discover Our <span class="g">Rice Varieties</span></h2>
+  <div class="divider" style="margin:1rem auto 0;"></div>
+  <p class="section-sub" style="margin-top:.8rem;">Each variety is harvested at peak season to ensure maximum aroma, texture, and nutritional value.</p>
+  <div class="products-grid">
+
+    <div class="product-card p-jasmine">
+      <div class="product-img">🌸</div>
+      <div class="product-body">
+        <div class="product-name">Jasmine Rice</div>
+        <div class="product-origin">📍 Battambang Province</div>
+        <p class="product-desc">Long-grain, naturally fragrant rice with a soft floral aroma. Perfect for steaming and Asian cuisine. Our most popular export variety.</p>
+        <div class="product-footer">
+          <div class="product-price">$30<span> / metric ton</span></div>
+          <button class="btn-order" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card p-white">
+      <div class="product-img">⬜</div>
+      <div class="product-body">
+        <div class="product-name">White Long-Grain Rice</div>
+        <div class="product-origin">📍 Battambang Province</div>
+        <p class="product-desc">Clean, neutral-flavored long-grain white rice. Ideal for restaurants, hotels, and large-scale food production. Available in 5% broken grade.</p>
+        <div class="product-footer">
+          <div class="product-price">$30<span> / metric ton</span></div>
+          <button class="btn-order" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card p-sticky">
+      <div class="product-img">⭐</div>
+      <div class="product-body">
+        <div class="product-name">Glutinous Sticky Rice</div>
+        <div class="product-origin">📍 Battambang Province</div>
+        <p class="product-desc">Traditional Khmer sticky rice with high starch content. Essential for Cambodian desserts, Laotian cuisine, and Thai cooking. Tender and chewy.</p>
+        <div class="product-footer">
+          <div class="product-price">$25<span> / metric ton</span></div>
+          <button class="btn-order" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card p-red">
+      <div class="product-img">🔴</div>
+      <div class="product-body">
+        <div class="product-name">Red Cargo Rice</div>
+        <div class="product-origin">📍 Battambang Province</div>
+        <p class="product-desc">Nutrient-rich whole-grain red rice with a nutty flavor and firm texture. High in fiber, antioxidants, and naturally gluten-free. Excellent for health markets.</p>
+        <div class="product-footer">
+          <div class="product-price">$25<span> / metric ton</span></div>
+          <button class="btn-order" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Order</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section id="why">
+  <span class="section-tag">Why Choose Us</span>
+  <h2 class="section-title">ហម Rice The Golden Harvest <span style="color:var(--gold2)">Difference</span></h2>
+  <div class="divider"></div>
+  <p class="section-sub">We are not just rice sellers — we are Cambodian farmers who take pride in every grain we grow and every bag we ship.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🌊</div>
+      <h3>Mekong River Water</h3>
+      <p>Our paddies are irrigated by the pristine waters of the Mekong River, naturally rich in minerals that give our rice exceptional flavor.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <h3>Award-Winning Quality</h3>
+      <p>Recognized by the World's Best Rice Competition multiple times. Our Jasmine rice has been acclaimed as among the finest in Asia.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <h3>Flexible Packaging</h3>
+      <p>We offer 1kg, 5kg, 25kg, and 50kg bags, as well as bulk metric ton orders. Custom private-label packaging available on request.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚢</div>
+      <h3>Fast Global Shipping</h3>
+      <p>We ship via Sihanoukville Port with full logistics support — FOB, CIF, and DDP terms available. Lead time: 10–15 business days.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📋</div>
+      <h3>Export Certified</h3>
+      <p>All products meet ISO 22000, HACCP, and Phytosanitary certificate standards. FDA-compliant for USA import.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <h3>Direct from Farm</h3>
+      <p>No middlemen. Buying directly from us means lower prices, fresher stock, and a direct relationship with the growers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials">
+  <span class="section-tag">Customer Reviews</span>
+  <h2 class="section-title">Trusted by Buyers <span class="g">Worldwide</span></h2>
+  <div class="divider" style="margin:1rem auto 0;"></div>
+  <div class="testimonials-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The Jasmine rice from Golden Harvest is absolutely incredible. The aroma fills the whole kitchen. Our restaurant customers notice the difference immediately. Will reorder every month.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">T</div>
+        <div>
+          <div class="testi-name">Thanapol S.</div>
+          <div class="testi-loc">Restaurant Owner – Bangkok, Thailand 🇹🇭</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <p class="testi-text">We import 20 tons per month for our grocery chain. The quality is consistently excellent, documentation is perfect, and the team is always responsive. Highly reliable partner.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div>
+          <div class="testi-name">Marie L.</div>
+          <div class="testi-loc">Import Manager – Paris, France 🇫🇷</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The Red Cargo Rice has been a hit in our health food store. Customers love the nutty taste and the organic-friendly farming approach. Best rice we've sourced from Southeast Asia.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">J</div>
+        <div>
+          <div class="testi-name">James K.</div>
+          <div class="testi-loc">Health Store Owner – Sydney, Australia 🇦🇺</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div>
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title">Ready to <span class="g">Order?</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub" style="margin-bottom:2rem;">Send us your inquiry and we'll respond within 24 hours with pricing, availability, and shipping details.</p>
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div>
+        <h4>Farm Address</h4>
+        <p>Battambong Province, Cambodia 📦 Phnom Penh Warehouse available</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📞</div>
+      <div>
+        <h4>Phone / Telegram</h4>
+        <p>+855 12 82 54 85</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">✉️</div>
+      <div>
+        <h4>Email</h4>
+        <p>info@homrice.com.kh</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🕐</div>
+      <div>
+        <h4>Business Hours</h4>
+        <p>Mon–Sun: 5:00 AM – 8:00 PM (ICT) · UTC+7</p>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--brown);margin-bottom:1.5rem;">Send an Inquiry</h3>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">Full Name *</label>
+          <input type="text" id="fname" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" placeholder="Your company" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="product">Product Interest</label>
+          <select id="product">
+            <option value="">Select product...</option>
+            <option>Jasmine Rice</option>
+            <option>White Long-Grain Rice</option>
+            <option>Glutinous Sticky Rice</option>
+            <option>Red Cargo Rice</option>
+            <option>Mixed/All Varieties</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity (tons)</label>
+          <input type="text" id="quantity" placeholder="e.g. 20 tons" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea id="message" placeholder="Tell us about your requirements, destination country, preferred packaging, etc." required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;font-size:1rem;padding:1rem;">🌾 Send Inquiry</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-logo"><span>🌾</span> ហម Rice </div>
+    <p>Premium Cambodian rice grown with care, exported with pride. From the heart of the Mekong Delta to your table.</p>
+  </div>
+  <div>
+    <h4>Quick Links</h4>
+    <ul>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#why">Why Choose Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Products</h4>
+    <ul>
+      <li><a href="#products">Jasmine Rice</a></li>
+      <li><a href="#products">White Long-Grain</a></li>
+      <li><a href="#products">Sticky Rice</a></li>
+      <li><a href="#products">Red Cargo Rice</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2026 ហម Rice., Ltd. · Phnom Penh, Cambodia 🇰🇭 · All rights reserved.
+</div>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(26,18,9,0.97)';
+    } else {
+      nav.style.background = 'rgba(26,18,9,0.82)';
+    }
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.product-card, .why-card, .testi-card, .feature-item, .info-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(el);
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '✅ Inquiry Sent! We\'ll contact you soon.';
+    btn.style.background = 'linear-gradient(135deg, #3A6B35, #5A9E52)';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = '🌾 Send Inquiry';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 4000);
+  }
+</script>
+</body>
+</html>
